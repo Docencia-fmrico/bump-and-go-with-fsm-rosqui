@@ -30,3 +30,9 @@ roslint_cpp(
  src/fsm_bump_go/BumpGo.cpp
  include/fsm_bump_go/BumpGo.h
 )
+
+catkin_add_gtest(bumpGo_test test/bumpGo_test.cpp)
+add_dependencies(bumpGo_test ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+if(TARGET bumpGo_test)
+  target_link_libraries(bumpGo_test ${catkin_LIBRARIES} ${PROJECT_NAME})
+endif()
