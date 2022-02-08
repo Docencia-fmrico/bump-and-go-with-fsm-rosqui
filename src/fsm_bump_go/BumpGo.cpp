@@ -48,7 +48,7 @@ BumpGo::step()
       // cmd.linear.x = ...;
       // cmd.angular.z = ...;
 
-      if (pressed_)ç
+      if (pressed_)
       {
         press_ts_ = ros::Time::now();
         state_ = GOING_BACK;
