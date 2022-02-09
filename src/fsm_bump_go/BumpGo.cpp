@@ -47,7 +47,7 @@ BumpGo::step()
   switch (state_)
   {
     case GOING_FORWARD:
-      cmd.linear.x = 0.1;
+      cmd.linear.x = 0.2;
       cmd.angular.z = 0;
 
       if (pressed_)
@@ -60,7 +60,7 @@ BumpGo::step()
       break;
     case GOING_BACK:
       pressed_ = false;
-      cmd.linear.x = -0.1;
+      cmd.linear.x = -0.2;
       cmd.angular.z = 0;
 
       if ((ros::Time::now() - press_ts_).toSec() > BACKING_TIME )
