@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef FSM_BUMP_GO_BUMPGO_H
-#define FSM_BUMP_GO_BUMPGO_H
+#ifndef FSM_NEAR_GO_NEARGO_H
+#define FSM_NEAR_GO_NEARGO_H
 
 //Clase padre
 #include "BumpGo_Base.h"
@@ -26,10 +26,10 @@
 namespace fsm_bump_go
 {
 
-class BumpGo: BumpGo_Base
+class NearGo: public BumpGo_Base
 {
 public:
-  BumpGo();
+  NearGo();
 
   void bumperCallback(const kobuki_msgs::BumperEvent::ConstPtr& msg);
   void step();
@@ -37,7 +37,7 @@ public:
 private:
   ros::NodeHandle n_;
 
-  static const int GOING_FORWARD = 0;
+  static const int GOING_FORWARD   = 0;
   static const int GOING_BACK = 1;
   static const int TURNING = 2;
 
@@ -57,9 +57,8 @@ private:
 
   ros::Subscriber sub_bumber_;
   ros::Publisher pub_vel_;
-  
 };
 
 }  // namespace fsm_bump_go
 
-#endif  // FSM_BUMP_GO_BUMPGO_H
+#endif  // FSM_NEAR_GO_NEARGO_H
