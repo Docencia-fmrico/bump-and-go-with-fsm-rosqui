@@ -35,7 +35,7 @@ BumpGo::BumpGo()
 void
 BumpGo::bumperCallback(const kobuki_msgs::BumperEvent::ConstPtr& msg)
 {
-  pressed_ = true ;
+  pressed_ = msg->state == kobuki_msgs::BumperEvent::PRESSED ;
   //  ...
 }
 
@@ -59,7 +59,6 @@ BumpGo::step()
 
       break;
     case GOING_BACK:
-      pressed_ = false;
       cmd.linear.x = -0.2;
       cmd.angular.z = 0;
 
