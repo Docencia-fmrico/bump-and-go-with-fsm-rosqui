@@ -23,7 +23,7 @@
 namespace fsm_bump_go
 {
 
-class BumpGo
+virtual class BumpGo
 {
 public:
   BumpGo();
@@ -31,7 +31,7 @@ public:
   void bumperCallback(const kobuki_msgs::BumperEvent::ConstPtr& msg);
   void step();
 
-private:
+protected:
   ros::NodeHandle n_;
 
   static const int GOING_FORWARD   = 0;
