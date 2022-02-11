@@ -28,7 +28,7 @@ BumpGo::BumpGo()
   pressed_(false)
 {
   // n_ es el NodeHandler. Se encarga de suscribir y publicar donde haga falta.
-  sub_bumber_ = n_.subscribe("/mobile_base/events/bumper", 1, &BumpGo::bumperCallback, this);
+  sub_bumber_ = n_.subscribe("/mobile_base/events/bumper", 100, &BumpGo::bumperCallback, this);
   pub_vel_ = n_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity",1);
 }
 
@@ -36,7 +36,7 @@ void
 BumpGo::bumperCallback(const kobuki_msgs::BumperEvent::ConstPtr& msg)
 {
   pressed_ = msg->state == kobuki_msgs::BumperEvent::PRESSED ;
-  //  ...
+  //hacer traza para ver bumper
 }
 
 void
