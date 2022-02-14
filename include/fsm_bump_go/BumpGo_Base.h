@@ -26,10 +26,10 @@ namespace fsm_bump_go
 class BumpGo_Base
 {
 public:
-  BumpGo_Base();
+  BumpGo_Base(): pressed_(false), state_(GOING_FORWARD) {};
 
+  virtual void step();
   void bumperCallback(const kobuki_msgs::BumperEvent::ConstPtr& msg);
-  void step();
 
 protected:
   ros::NodeHandle n_;
