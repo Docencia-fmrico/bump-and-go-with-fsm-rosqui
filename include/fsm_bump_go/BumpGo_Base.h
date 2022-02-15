@@ -60,6 +60,7 @@ protected:
   ros::Time turn_ts_;
 
   ros::Subscriber sub_bumber_;
+  ros::Subscriber sub_laser_scan_;
   ros::Publisher pub_vel_;
 };
 

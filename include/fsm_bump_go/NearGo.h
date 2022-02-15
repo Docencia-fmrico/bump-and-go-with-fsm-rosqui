@@ -21,6 +21,7 @@
 #include "ros/ros.h"
 
 #include "geometry_msgs/Twist.h"
+#include "sensor_msgs/LaserScan.h"
 
 namespace fsm_bump_go
 {
@@ -29,7 +30,10 @@ class NearGo: public BumpGo_Base
 {
 public:
   NearGo();
-  virtual void step();
+
+  void step();
+  void scanFilteredCallback(const sensor_msgs::LaserScan::ConstPtr& msg);
+
 };
 
 }  // namespace fsm_bump_go

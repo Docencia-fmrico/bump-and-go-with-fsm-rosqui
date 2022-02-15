@@ -27,11 +27,24 @@ NearGo::NearGo()
   detected_ = false;
   state_= GOING_FORWARD;
   // n_ es el NodeHandler. Se encarga de suscribir y publicar donde haga falta.
-  // sub_bumber_ = n_.subscribe("/mobile_base/events/bumper", 1, &BumpGo_Advanced::bumperCallback, this);
+  sub_laser_scan_ = n_.subscribe("/scan_filtered", 1, &NearGo::scanFilteredCallback, this);
   pub_vel_ = n_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity",1);
 }
 
-NearGo::scanFilteredCallback(const sensor_msgs::SensorScan)
+void
+NearGo::scanFilteredCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
+{
+  float avg_left_values;
+  float avg_front_values;
+  float avg_right_values;
+
+  ROS_INFO("size of ranges: %lu \t size of intensities: %lu", sizeof(msg->ranges), sizeof(msg->intensities));
+  
+  for(int i = 0; i < sizeof(msg->ranges); i++)
+  {
+    ROS_INFO("ranges[%d]: %f", i, msg->ranges[i]);
+  }
+}
 
 void
 NearGo::step()
