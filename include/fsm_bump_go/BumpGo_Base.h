@@ -26,27 +26,35 @@ namespace fsm_bump_go
 class BumpGo_Base
 {
 public:
-  BumpGo_Base(): pressed_(false), state_(GOING_FORWARD) {};
+  BumpGo_Base(): detected_(false), state_(GOING_FORWARD) {};
 
-  virtual void step();
+  virtual void step() = 0;
 
 protected:
   ros::NodeHandle n_;
 
   static const int GOING_FORWARD = 0;
   static const int GOING_BACK = 1;
-  static const int TURNING = 2;
+  static const int TURNING_LEFT = 2;
+  static const int TURNING_RIGHT = 3;
 
   static constexpr double FORWARD_VEL = 0.2;
-  static constexpr double TURNING_VEL = 0.4;
+  static constexpr double TURNING_VEL_LEFT = 0.4;
+  static constexpr double TURNING_VEL_RIGHT = -0.4;
   static constexpr double BACK_VEL = -0.15;
 
   static constexpr double TURNING_TIME = 5.0;
   static constexpr double BACKING_TIME = 3.0;
 
+  static const int DETECTED_LEFT = 0;
+  static const int DETECTED_FRONT = 1;
+  static const int DETECTED_RIGHT = 2;
+
   int state_;
 
-  bool pressed_;
+  bool detected_;
+
+  int direction_;
 
   ros::Time press_ts_;
   ros::Time turn_ts_;
