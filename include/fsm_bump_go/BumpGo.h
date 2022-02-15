@@ -32,7 +32,7 @@ public:
   BumpGo();
 
   void bumperCallback(const kobuki_msgs::BumperEvent::ConstPtr& msg);
-
+  void step();
 };
 
 }  // namespace fsm_bump_go
