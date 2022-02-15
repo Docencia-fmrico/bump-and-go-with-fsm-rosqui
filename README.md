@@ -2,7 +2,7 @@
 # fsm_bump_go
 
 ## 0.Introducción
-En esta primera práctica se nos ha pedido realizar un **bump and go** en distintas versiones. Para ello hemos optado por crear una clase base abstracta llamada "BumpGo_Base.h" y de la que heredan "BumpGo.h", "BumpGo_Advanced.h" y "NearGo.h". 
+En esta primera práctica se nos ha pedido realizar un **bump and go** en distintas versiones. Para ello hemos optado por crear una clase base abstracta llamada "BumpGo_Base.h" y de la que heredan "BumpGo.h", "BumpGo_Advanced.h" y "NearGo.h". BumpGo.h tiene su propia máquina de estados y BumpGo_Advanced.h y NearGo.h comparten la misma.
 
 ## 1.Versión 0: BumpGo 
 
@@ -17,11 +17,11 @@ En esta versión se nos ha pedido hacer un programa básico de **bump and go** c
 Los problemas que nos han surgido en esta práctica 0 son los siguientes:
   - Nos costó mucho entender la lógica del programa base que aparecía de ejemplo. De todo el código base nos costó entender en bumpgo_node.cpp las siguientes líneas: 
  
-```c++
-ros::init(argc, argv, "fsm_bump_go");
+  ```c++
+  ros::init(argc, argv, "fsm_bump_go");
 
-fsm_bump_go::BumpGo fsm_bump_go;
-```
+  fsm_bump_go::BumpGo fsm_bump_go;
+  ```
 
 
   
