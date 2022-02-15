@@ -14,17 +14,20 @@ En esta versión se nos ha pedido hacer un programa básico de **bump and go** c
 - 3º: Gira a la izquierda
 
 ### 1.2. Problemas surgidos durante la práctica
-Los problemas que nos han surgido en esta práctica 0 son los siguientes:
-  - Nos costó mucho entender la lógica del programa base que aparecía de ejemplo. De todo el código base nos costó entender en bumpgo_node.cpp las siguientes líneas: 
+Los problemas que nos han surgido en BumpGo son los siguientes:
+  - Nos costó entender en bumpgo_node.cpp las siguientes líneas: 
  
   ```c++
   ros::init(argc, argv, "fsm_bump_go");
-
   fsm_bump_go::BumpGo fsm_bump_go;
   ```
-
-
-  
+  - Otras líneas que nos costó entender fueron las siguientes: 
+ 
+  ```c++
+  sub_bumber_ = n_.subscribe("/mobile_base/events/bumper", 1, &BumpGo::bumperCallback, this);
+  pub_vel_ = n_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity",1);
+  ```
+ 
 ### 1.3. Vídeo de la versión 0
 [Aquí]() podrás ver el funcionamiento de la práctica.
 
@@ -52,6 +55,9 @@ _Detecta un objeto de frente:_
 - 4º: Gira a la izquierda
 
 ### 2.2. Problemas surgidos durante la práctica 
+Los problemas que nos han surgido en BumpGo_Advanced son los siguientes:
+- No entendíamos bien cómo heredar teniendo en cuenta BumpGo_Advanced y NearGo usando la misma máquina de estados. 
+- Definición de variables
 
 ### 2.3. Video de la versión 1
 [Aquí]() podrás ver el funcionamiento de la práctica.
