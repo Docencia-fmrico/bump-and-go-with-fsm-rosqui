@@ -4,6 +4,9 @@
 ## 0.Introducción
 En esta primera práctica se nos ha pedido realizar un **bump and go** en distintas versiones. Para ello hemos optado por crear una clase base abstracta llamada "BumpGo_Base.h" y de la que heredan "BumpGo.h", "BumpGo_Advanced.h" y "NearGo.h". BumpGo.h tiene su propia máquina de estados y BumpGo_Advanced.h y NearGo.h comparten la misma.
 
+![kobuki](https://github.com/Docencia-fmrico/bump-and-go-with-fsm-rosqui/blob/main/kobuki.jpg "kobuki")
+
+
 ## 1.Versión 0: BumpGo 
 
 ### 1.1. Descripción
