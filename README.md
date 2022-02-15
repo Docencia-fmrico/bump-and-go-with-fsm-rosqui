@@ -32,7 +32,7 @@ Los problemas que nos han surgido en BumpGo son los siguientes:
   ```
  
 ### 1.3. Vídeo de la versión 0
-[Aquí]() podrás ver el funcionamiento de BumpGo.
+[Aquí](https://urjc-my.sharepoint.com/:v:/g/personal/j_lopeza_2020_alumnos_urjc_es/EbT5KnOKAglFrWKQUAUM1AwBOtnCiVkiN5z5kbWuzeei1g?e=gillvz) podrás ver el funcionamiento de BumpGo.
 
 ## 2.Versión 1: BumpGo_Advanced
 
@@ -63,7 +63,7 @@ Los problemas que nos han surgido en BumpGo_Advanced son los siguientes:
 - Definición de variables
 
 ### 2.3. Video de la versión 1
-[Aquí]() podrás ver el funcionamiento de BumpGo_Advanced.
+[Aquí](https://urjc-my.sharepoint.com/:v:/g/personal/j_lopeza_2020_alumnos_urjc_es/ETSr1gBH6OtGnPO8RYnbAg4Bko-bnleVMxAsOQBt8wc_XQ?e=ObbaOH) podrás ver el funcionamiento de BumpGo_Advanced.
 
 ## 3.Versión 2: NearGo
 
