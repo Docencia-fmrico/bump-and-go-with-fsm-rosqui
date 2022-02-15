@@ -29,7 +29,6 @@ public:
   BumpGo_Base(): pressed_(false), state_(GOING_FORWARD) {};
 
   virtual void step();
-  void bumperCallback(const kobuki_msgs::BumperEvent::ConstPtr& msg);
 
 protected:
   ros::NodeHandle n_;

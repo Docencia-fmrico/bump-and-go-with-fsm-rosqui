@@ -31,7 +31,8 @@ class BumpGo: public BumpGo_Base
 public:
   BumpGo();
 
-  
+  void bumperCallback(const kobuki_msgs::BumperEvent::ConstPtr& msg);
+
 };
 
 }  // namespace fsm_bump_go

@@ -32,4 +32,11 @@ BumpGo::BumpGo()
   pub_vel_ = n_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity",1);
 }
 
+void
+BumpGo::bumperCallback(const kobuki_msgs::BumperEvent::ConstPtr& msg)
+{
+  pressed_ = msg->state == kobuki_msgs::BumperEvent::PRESSED ;
+  //hacer traza para ver bumper
+}
+
 }  // namespace fsm_bump_go

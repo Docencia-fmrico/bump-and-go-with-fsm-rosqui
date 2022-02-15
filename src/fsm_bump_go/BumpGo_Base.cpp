@@ -23,13 +23,6 @@ namespace fsm_bump_go
 {
 
 void
-BumpGo_Base::bumperCallback(const kobuki_msgs::BumperEvent::ConstPtr& msg)
-{
-  pressed_ = msg->state == kobuki_msgs::BumperEvent::PRESSED ;
-  //hacer traza para ver bumper
-}
-
-void
 BumpGo_Base::step()
 {
   geometry_msgs::Twist cmd;
