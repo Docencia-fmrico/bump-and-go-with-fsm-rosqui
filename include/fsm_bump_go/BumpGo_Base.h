@@ -39,8 +39,8 @@ protected:
   static const int TURNING_RIGHT = 3;
 
   static constexpr double FORWARD_VEL = 0.2;
-  static constexpr double TURNING_VEL_LEFT = 0.4;
-  static constexpr double TURNING_VEL_RIGHT = -0.4;
+  static constexpr double TURNING_VEL_LEFT = 0.3;
+  static constexpr double TURNING_VEL_RIGHT = -0.3;
   static constexpr double BACK_VEL = -0.15;
 
   static constexpr double TURNING_TIME = 5.0;
