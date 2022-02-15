@@ -32,7 +32,7 @@ Los problemas que nos han surgido en BumpGo son los siguientes:
   ```
  
 ### 1.3. Vídeo de la versión 0
-[Aquí]() podrás ver el funcionamiento de la práctica.
+[Aquí]() podrás ver el funcionamiento de BumpGo.
 
 ## 2.Versión 1: BumpGo_Advanced
 
@@ -63,7 +63,7 @@ Los problemas que nos han surgido en BumpGo_Advanced son los siguientes:
 - Definición de variables
 
 ### 2.3. Video de la versión 1
-[Aquí]() podrás ver el funcionamiento de la práctica.
+[Aquí]() podrás ver el funcionamiento de BumpGo_Advanced.
 
 ## 3.Versión 2: NearGo
 
@@ -75,7 +75,7 @@ En esta versión se nos ha pedido hacer un programa **bump and go** usando el l�
 ### 2.2. Problemas surgidos durante la práctica 
 
 ### 2.3. Video de la versión 2
-[Aquí]() podrás ver el funcionamiento de la práctica.
+[Aquí]() podrás ver el funcionamiento de NearGo.
 
 
 
