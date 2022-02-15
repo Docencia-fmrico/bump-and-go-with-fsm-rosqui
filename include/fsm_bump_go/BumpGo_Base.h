@@ -12,11 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef FSM_BUMP_GO_BUMPGO_H
-#define FSM_BUMP_GO_BUMPGO_H
-
-//Clase padre
-#include "fsm_bump_go/BumpGo_Base.h"
+#ifndef FSM_BUMP_GO_BUMPGO_BASE_H
+#define FSM_BUMP_GO_BUMPGO_BASE_H
 
 #include "ros/ros.h"
 
@@ -26,15 +23,38 @@
 namespace fsm_bump_go
 {
 
-class BumpGo: public BumpGo_Base
+class BumpGo_Base
 {
 public:
-  BumpGo();
+  BumpGo_Base(): pressed_(false), state_(GOING_FORWARD) {};
 
-  void bumperCallback(const kobuki_msgs::BumperEvent::ConstPtr& msg);
+  virtual void step();
 
+protected:
+  ros::NodeHandle n_;
+
+  static const int GOING_FORWARD = 0;
+  static const int GOING_BACK = 1;
+  static const int TURNING = 2;
+
+  static constexpr double FORWARD_VEL = 0.2;
+  static constexpr double TURNING_VEL = 0.4;
+  static constexpr double BACK_VEL = -0.15;
+
+  static constexpr double TURNING_TIME = 5.0;
+  static constexpr double BACKING_TIME = 3.0;
+
+  int state_;
+
+  bool pressed_;
+
+  ros::Time press_ts_;
+  ros::Time turn_ts_;
+
+  ros::Subscriber sub_bumber_;
+  ros::Publisher pub_vel_;
 };
 
 }  // namespace fsm_bump_go
 
-#endif  // FSM_BUMP_GO_BUMPGO_H
+#endif  // FSM_BUMP_GO_BUMPGO_BASE_H

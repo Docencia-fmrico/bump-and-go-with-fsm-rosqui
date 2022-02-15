@@ -19,6 +19,7 @@ include_directories(
 )
 
 add_library(${PROJECT_NAME}
+  src/fsm_bump_go/BumpGo_Base.cpp
   src/fsm_bump_go/BumpGo.cpp
 )
 
@@ -28,5 +29,7 @@ target_link_libraries(bumpgo_node ${catkin_LIBRARIES} ${PROJECT_NAME})
 roslint_cpp(
  src/bumpgo_node.cpp
  src/fsm_bump_go/BumpGo.cpp
+ src/fsm_bump_go/BumpGo_Base.cpp
  include/fsm_bump_go/BumpGo.h
+ include/fsm_bump_go/BumpGo_Base.h
 )
