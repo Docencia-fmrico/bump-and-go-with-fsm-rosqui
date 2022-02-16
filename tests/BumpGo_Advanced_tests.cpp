@@ -2,10 +2,10 @@
 #include "kobuki_msgs/BumperEvent.h"
 #include "geometry_msgs/Twist.h"
 
-#include "fsm_bump_go/BumpGo.h"
+#include "fsm_bump_go/BumpGo_Advanced.h"
 #include <gtest/gtest.h>
 
-class TestBumpGo : public fsm_bump_go::BumpGo
+class TestBumpGo_Advanced : public fsm_bump_go::BumpGo_Advanced
 {
 public:
     bool get_detected_()
@@ -19,7 +19,7 @@ public:
 };
 TEST(my_test, test_set_reading)
 {
-    TestBumpGo fsm_bump_go;
+    TestBumpGo_Advanced fsm_bump_go;
 
     ASSERT_EQ(fsm_bump_go.get_detected_(), false);
     ASSERT_EQ(fsm_bump_go.get_state_(), 0);
