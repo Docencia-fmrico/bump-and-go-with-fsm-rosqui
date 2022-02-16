@@ -34,15 +34,39 @@ NearGo::NearGo()
 void
 NearGo::scanFilteredCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
 {
-  float avg_left_values;
+  //float avg_left_values;
   float avg_front_values;
-  float avg_right_values;
-
-  ROS_INFO("size of ranges: %lu \t size of intensities: %lu", sizeof(msg->ranges), sizeof(msg->intensities));
+  // float avg_right_values;
+  int num_ranges = (msg->angle_max-msg->angle_min)/msg->angle_increment;
+  int start_ranges_front = 14*num_ranges/16;
+  int fin_ranges_front = 16*num_ranges/16;
+  int divisor_avrg_front = fin_ranges_front - start_ranges_front;
+  float dividend_front = 0;
+  ROS_INFO("size of ranges: %d", num_ranges);
   
-  for(int i = 0; i < sizeof(msg->ranges); i++)
+  for(int i = start_ranges_front; i < fin_ranges_front; i++)
   {
-    ROS_INFO("ranges[%d]: %f", i, msg->ranges[i]);
+    if(msg->ranges[i] > msg->range_max)
+    {
+      divisor_avrg_front--;
+      continue;
+    }else
+    { 
+      dividend_front += msg->ranges[i]; 
+    }
+  }
+
+  avg_front_values = dividend_front / divisor_avrg_front;
+  ROS_INFO("AVERANGE FRONT = %f/%d = %f", dividend_front, divisor_avrg_front, avg_front_values);
+
+  if(avg_front_values < 0.8)
+  {
+    ROS_INFO("ENTRA EN DETECTED");
+    detected_ = true;
+    direction_ = DETECTED_FRONT;
+  }else{
+      ROS_INFO("ENTRA EN ELSE");
+    detected_ = false;
   }
 }
 
