@@ -5,9 +5,16 @@
 #include "fsm_bump_go/BumpGo.h"
 #include <gtest/gtest.h>
 
+static const int GOING_FORWARD = 0;
+static const int GOING_BACK = 1;
+static const int TURNING_LEFT = 2;
+static const int TURNING_RIGHT = 3;
+
+
 class TestBumpGo : public fsm_bump_go::BumpGo
 {
 public:
+
     bool get_detected_()
     {
         return detected_;
@@ -16,13 +23,26 @@ public:
     {
         return state_;
     }
+    void set_state_(int new_state)
+    {
+        state_ = new_state;
+    }
+    void set_detected_(bool new_detected)
+    {
+        detected_ = new_detected;
+    }
+
 };
 TEST(my_test, test_set_reading)
 {
     TestBumpGo fsm_bump_go;
 
     ASSERT_EQ(fsm_bump_go.get_detected_(), false);
-    ASSERT_EQ(fsm_bump_go.get_state_(), 0);
+    ASSERT_EQ(fsm_bump_go.get_state_(), GOING_FORWARD);
+
+    fsm_bump_go.set_detected_(true);
+    fsm_bump_go.step();
+    ASSERT_EQ(fsm_bump_go.get_state_(), GOING_BACK);
 
 }
 
