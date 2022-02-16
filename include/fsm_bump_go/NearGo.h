@@ -33,7 +33,13 @@ public:
 
   void step();
   void scanFilteredCallback(const sensor_msgs::LaserScan::ConstPtr& msg);
+  int check_sector(const sensor_msgs::LaserScan::ConstPtr& msg, int num_ranges, float proportion_to_check, int center);
+  float average(const sensor_msgs::LaserScan::ConstPtr& msg, int sector, int ranges_in_sector, int center);
 
+private:
+// Sectors to divide the left or right sectors
+  static const int NUM_SECTORS = 10;
+  static const int CENTER_LIMIT_SECT = 3;
 };
 
 }  // namespace fsm_bump_go
