@@ -56,3 +56,9 @@ add_dependencies(BumpGo_Advanced_tests ${${PROJECT_NAME}_EXPORTED_TARGETS} ${cat
 if(TARGET BumpGo_Advanced_tests)
   target_link_libraries(BumpGo_Advanced_tests ${catkin_LIBRARIES} ${PROJECT_NAME})
 endif()
+
+catkin_add_gtest(NearGo tests/NearGo)
+add_dependencies(NearGo ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+if(TARGET NearGo)
+  target_link_libraries(NearGo ${catkin_LIBRARIES} ${PROJECT_NAME})
+endif()

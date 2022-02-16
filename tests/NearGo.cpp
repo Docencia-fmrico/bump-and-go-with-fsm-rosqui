@@ -2,7 +2,7 @@
 #include "kobuki_msgs/BumperEvent.h"
 #include "geometry_msgs/Twist.h"
 
-#include "fsm_bump_go/BumpGo.h"
+#include "fsm_bump_go/NearGo.h"
 #include <gtest/gtest.h>
 
 static const int GOING_FORWARD = 0;
@@ -33,21 +33,17 @@ public:
     }
 
 };
-TEST(BumpGo_test_1, test_set_reading)
+TEST(my_test, test_set_reading)
 {
     TestBumpGo fsm_bump_go;
 
     ASSERT_EQ(fsm_bump_go.get_detected_(), false);
     ASSERT_EQ(fsm_bump_go.get_state_(), GOING_FORWARD);
-}
-
-TEST(BumpGo_test_2, test_set_reading)
-{
-    TestBumpGo fsm_bump_go;
 
     fsm_bump_go.set_detected_(true);
     fsm_bump_go.step();
     ASSERT_EQ(fsm_bump_go.get_state_(), GOING_BACK);
+
 }
 
 int main(int argc, char **argv){
