@@ -41,7 +41,7 @@ protected:
   static constexpr double FORWARD_VEL = 0.2;
   static constexpr double TURNING_VEL_LEFT = 0.3;
   static constexpr double TURNING_VEL_RIGHT = -0.3;
-  static constexpr double BACK_VEL = -0.15;
+  static constexpr double BACK_VEL = -0.25;
 
   static constexpr double TURNING_TIME = 5.0;
   static constexpr double BACKING_TIME = 3.0;
@@ -49,6 +49,8 @@ protected:
   static const int DETECTED_LEFT = 0;
   static const int DETECTED_FRONT = 1;
   static const int DETECTED_RIGHT = 2;
+
+  static constexpr float MIN_RANGE_LASER = 0.8;
 
   int state_;
 
