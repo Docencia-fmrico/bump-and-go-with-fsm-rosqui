@@ -50,8 +50,6 @@ protected:
   static const int DETECTED_FRONT = 1;
   static const int DETECTED_RIGHT = 2;
 
-  static constexpr float MIN_RANGE_LASER = 0.8;
-
   int state_;
 
   bool detected_;
