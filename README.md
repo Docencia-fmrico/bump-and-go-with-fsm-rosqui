@@ -73,9 +73,10 @@ En esta versión se nos ha pedido hacer un programa **bump and go** usando el l�
 
 
 ### 2.2. Problemas surgidos durante la práctica 
+Los problemas que nos han surgido en Near_Go son los siguientes:
 
 ### 2.3. Video de la versión 2
-[Aquí]() podrás ver el funcionamiento de NearGo.
+[Aquí](https://urjc-my.sharepoint.com/:v:/g/personal/j_lopeza_2020_alumnos_urjc_es/EVI-GO6HrFhMiTZNWvETugcBFfZ55cownhsrS58F0_bpYg?e=ty8G9Z) podrás ver el funcionamiento de NearGo.
 
 
 
