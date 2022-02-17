@@ -52,17 +52,16 @@ BumpGo::step()
 
       if (detected_)
       {
-        press_ts_ = ros::Time::now();
+        detected_ts_ = ros::Time::now();
         state_ = GOING_BACK;
         ROS_INFO("GOING_FORWARD -> GOING_BACK");
       }
-
       break;
     case GOING_BACK:
       cmd.linear.x = BACK_VEL;
       cmd.angular.z = 0;
 
-      if ((ros::Time::now() - press_ts_).toSec() > BACKING_TIME )
+      if ((ros::Time::now() - detected_ts_).toSec() > BACKING_TIME )
       {
         turn_ts_ = ros::Time::now();
         state_ = TURNING_LEFT;

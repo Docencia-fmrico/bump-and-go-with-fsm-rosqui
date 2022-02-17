@@ -41,7 +41,7 @@ protected:
   static constexpr double FORWARD_VEL = 0.2;
   static constexpr double TURNING_VEL_LEFT = 0.3;
   static constexpr double TURNING_VEL_RIGHT = -0.3;
-  static constexpr double BACK_VEL = -0.25;
+  static constexpr double BACK_VEL = -0.15;
 
   static constexpr double TURNING_TIME = 5.0;
   static constexpr double BACKING_TIME = 3.0;
@@ -58,7 +58,7 @@ protected:
 
   int direction_;
 
-  ros::Time press_ts_;
+  ros::Time detected_ts_;
   ros::Time turn_ts_;
 
   ros::Subscriber sub_bumber_;
