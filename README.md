@@ -67,15 +67,18 @@ Los problemas que nos han surgido en BumpGo_Advanced son los siguientes:
 
 ## 3.Versión 2: NearGo
 
-### 2.1. Descripción 
+### 3.1. Descripción 
 
 En esta versión se nos ha pedido hacer un programa **bump and go** usando el láser.
 
-
-### 2.2. Problemas surgidos durante la práctica 
+### 3.2. Problemas surgidos durante la práctica 
 Los problemas que nos han surgido en Near_Go son los siguientes:
 
-### 2.3. Video de la versión 2
+  - Poner en correcto funcionamiento el láser.
+  - Estructurar el código. 
+  - Implementar el algoritmo (ya que el rplidar está puesto del revés). 
+
+### 3.3. Video de la versión 2
 [Aquí](https://urjc-my.sharepoint.com/:v:/g/personal/j_lopeza_2020_alumnos_urjc_es/EVI-GO6HrFhMiTZNWvETugcBFfZ55cownhsrS58F0_bpYg?e=ty8G9Z) podrás ver el funcionamiento de NearGo.
 
 
