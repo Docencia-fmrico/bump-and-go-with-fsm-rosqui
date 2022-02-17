@@ -32,20 +32,35 @@ NearGo::NearGo()
 }
 
 float
-NearGo::average(const sensor_msgs::LaserScan::ConstPtr& msg, int sector, int ranges_in_sector, int center)
+NearGo::average_range(const sensor_msgs::LaserScan::ConstPtr& msg, int sector, int ranges_in_sector, int center, int num_ranges)
 {
   int divisor = ranges_in_sector;
   float average;
   float dividend = 0;
 
-  for(int i = center + (sector*ranges_in_sector); i < center + ((sector+1)*ranges_in_sector); i++)
-  {
-    if(msg->ranges[i] > msg->range_max || msg->ranges[i] < msg->range_min)
+  if(center != 0 || sector >= 0){
+    for(int i = center + (sector*ranges_in_sector); i < center + ((sector+1)*ranges_in_sector); i++)
     {
-      divisor--;
-    }else
-    { 
-      dividend += msg->ranges[i];
+      if(msg->ranges[i] > msg->range_max || msg->ranges[i] < msg->range_min)
+      {
+        divisor--;
+      }else
+      { 
+        dividend += msg->ranges[i];
+      }
+    }
+  }
+  else if(sector < 0 && center == 0)
+  { // center == 0
+    for(int i = num_ranges + (sector*ranges_in_sector); i < num_ranges + ((sector+1)*ranges_in_sector); i++)
+    {
+      if(msg->ranges[i] > msg->range_max || msg->ranges[i] < msg->range_min)
+      {
+        divisor--;
+      }else
+      { 
+        dividend += msg->ranges[i];
+      }
     }
   }
   if(!divisor)
@@ -54,7 +69,7 @@ NearGo::average(const sensor_msgs::LaserScan::ConstPtr& msg, int sector, int ran
   }else{
     average = dividend/divisor;
   }
-  // ROS_INFO("Average sector: %d = %f", sector, average); //Traza para calibrar el RPlidar
+  ROS_INFO("Average sector: %d = %f", sector, average); //Traza para calibrar el RPlidar
   return average;
 }
 
@@ -70,9 +85,9 @@ NearGo::check_sector(const sensor_msgs::LaserScan::ConstPtr& msg, int num_ranges
   int ranges_in_sector = (num_ranges * proportion_to_check)/NUM_SECTORS;
   float sector_rang_avg;
 
-  for(int sector = -NUM_SECTORS+1; sector < NUM_SECTORS; sector++)
+  for(int sector = -NUM_SECTORS; sector < NUM_SECTORS; sector++)
   {
-    if(MIN_RANGE_LASER > average(msg, sector, ranges_in_sector, center))
+    if(MIN_RANGE_LASER > average_range(msg, sector, ranges_in_sector, center, num_ranges))
     {
       warning_sector = sector;
       ROS_INFO("WARNING SECTOR : %d", warning_sector);
@@ -88,8 +103,8 @@ NearGo::scanFilteredCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
   float avg_right_values;
   float proportion = 0.1875;
   int num_ranges = (msg->angle_max-msg->angle_min)/msg->angle_increment;
-  int front_range = num_ranges/2;
-  int near_sector = check_sector(msg, num_ranges, proportion, front_range);
+  int center = 0; // num_ranges/2 para simulador
+  int near_sector = check_sector(msg, num_ranges, proportion, center);
 
   if(near_sector < NUM_SECTORS && near_sector > CENTER_LIMIT_SECT)
   {
@@ -128,8 +143,8 @@ NearGo::step()
 
       if (detected_)
       {
-        press_ts_ = ros::Time::now();
         state_ = GOING_BACK;
+        detected_ts_ = ros::Time::now();
         ROS_INFO("GOING_FORWARD -> GOING_BACK");
       }
 
@@ -138,7 +153,7 @@ NearGo::step()
       cmd.linear.x = BACK_VEL;
       cmd.angular.z = 0;
 
-      if ((ros::Time::now() - press_ts_).toSec() > BACKING_TIME )
+      if ((ros::Time::now() - detected_ts_).toSec() > BACKING_TIME )
       {
         turn_ts_ = ros::Time::now();
         if(direction_ == DETECTED_LEFT)

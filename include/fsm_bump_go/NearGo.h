@@ -34,7 +34,7 @@ public:
   void step();
   void scanFilteredCallback(const sensor_msgs::LaserScan::ConstPtr& msg);
   int check_sector(const sensor_msgs::LaserScan::ConstPtr& msg, int num_ranges, float proportion_to_check, int center);
-  float average(const sensor_msgs::LaserScan::ConstPtr& msg, int sector, int ranges_in_sector, int center);
+  float average_range(const sensor_msgs::LaserScan::ConstPtr& msg, int sector, int ranges_in_sector, int center, int num_ranges);
 
 private:
 // Sectors to divide the left or right sectors

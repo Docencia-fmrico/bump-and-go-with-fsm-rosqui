@@ -54,7 +54,7 @@ BumpGo_Advanced::step()
 
       if (detected_)
       {
-        press_ts_ = ros::Time::now();
+        detected_ts_ = ros::Time::now();
         state_ = GOING_BACK;
         ROS_INFO("GOING_FORWARD -> GOING_BACK");
       }
@@ -64,7 +64,7 @@ BumpGo_Advanced::step()
       cmd.linear.x = BACK_VEL;
       cmd.angular.z = 0;
 
-      if ((ros::Time::now() - press_ts_).toSec() > BACKING_TIME )
+      if ((ros::Time::now() - detected_ts_).toSec() > BACKING_TIME )
       {
         turn_ts_ = ros::Time::now();
         if(direction_ == DETECTED_LEFT)
