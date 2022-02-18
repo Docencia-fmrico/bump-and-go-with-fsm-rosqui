@@ -15,6 +15,9 @@
 #ifndef FSM_BUMP_GO_BUMPGO_H
 #define FSM_BUMP_GO_BUMPGO_H
 
+//Clase padre
+#include "fsm_bump_go/BumpGo_Base.h"
+
 #include "ros/ros.h"
 
 #include "kobuki_msgs/BumperEvent.h"
@@ -23,33 +26,13 @@
 namespace fsm_bump_go
 {
 
-class BumpGo
+class BumpGo: public BumpGo_Base
 {
 public:
   BumpGo();
 
   void bumperCallback(const kobuki_msgs::BumperEvent::ConstPtr& msg);
   void step();
-
-private:
-  ros::NodeHandle n_;
-
-  static const int GOING_FORWARD   = 0;
-  static const int GOING_BACK = 1;
-  static const int TURNING = 2;
-
-  static constexpr double TURNING_TIME = 5.0;
-  static constexpr double BACKING_TIME = 3.0;
-
-  int state_;
-
-  bool pressed_;
-
-  ros::Time press_ts_;
-  ros::Time turn_ts_;
-
-  ros::Subscriber sub_bumber_;
-  ros::Publisher pub_vel_;
 };
 
 }  // namespace fsm_bump_go

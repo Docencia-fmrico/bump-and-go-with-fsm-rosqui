@@ -19,14 +19,46 @@ include_directories(
 )
 
 add_library(${PROJECT_NAME}
+  src/fsm_bump_go/BumpGo_Advanced.cpp
   src/fsm_bump_go/BumpGo.cpp
+  src/fsm_bump_go/NearGo.cpp
 )
 
 add_executable(bumpgo_node src/bumpgo_node.cpp)
+add_executable(bumpgo_node_advanced src/bumpgo_node_advanced.cpp)
+add_executable(neargo_node src/neargo_node.cpp)
 target_link_libraries(bumpgo_node ${catkin_LIBRARIES} ${PROJECT_NAME})
+target_link_libraries(bumpgo_node_advanced ${catkin_LIBRARIES} ${PROJECT_NAME})
+target_link_libraries(neargo_node ${catkin_LIBRARIES} ${PROJECT_NAME})
 
 roslint_cpp(
  src/bumpgo_node.cpp
+ src/neargo_node.cpp
+ src/bumpgo_node_advanced.cpp
  src/fsm_bump_go/BumpGo.cpp
+ src/fsm_bump_go/NearGo.cpp
+ src/fsm_bump_go/BumpGo_Advanced.cpp
  include/fsm_bump_go/BumpGo.h
+ include/fsm_bump_go/BumpGo_Advanced.h
+ include/fsm_bump_go/BumpGo_Base.h
+ include/fsm_bump_go/NearGo.h
+ 
 )
+
+catkin_add_gtest(BumpGo_tests tests/BumpGo_tests)
+add_dependencies(BumpGo_tests ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+if(TARGET BumpGo_tests)
+  target_link_libraries(BumpGo_tests ${catkin_LIBRARIES} ${PROJECT_NAME})
+endif()
+
+catkin_add_gtest(BumpGo_Advanced_tests tests/BumpGo_Advanced_tests)
+add_dependencies(BumpGo_Advanced_tests ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+if(TARGET BumpGo_Advanced_tests)
+  target_link_libraries(BumpGo_Advanced_tests ${catkin_LIBRARIES} ${PROJECT_NAME})
+endif()
+
+catkin_add_gtest(NearGo tests/NearGo)
+add_dependencies(NearGo ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+if(TARGET NearGo)
+  target_link_libraries(NearGo ${catkin_LIBRARIES} ${PROJECT_NAME})
+endif()

@@ -22,19 +22,21 @@
 namespace fsm_bump_go
 {
 
+// Constructor
 BumpGo::BumpGo()
-: state_(GOING_FORWARD),
-  pressed_(false)
 {
-  // sub_bumber_ = n_.subscribe(...);
-  // pub_vel_ = n_.advertise<...>(...)
+  detected_ = false;
+  state_= GOING_FORWARD;
+  // n_ es el NodeHandler. Se encarga de suscribir y publicar donde haga falta.
+  sub_bumber_ = n_.subscribe("/mobile_base/events/bumper", 1, &BumpGo::bumperCallback, this);
+  pub_vel_ = n_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity",1);
 }
 
 void
 BumpGo::bumperCallback(const kobuki_msgs::BumperEvent::ConstPtr& msg)
 {
-  // pressed_ = (...);
-  //  ...
+  detected_ = msg->state == kobuki_msgs::BumperEvent::PRESSED ;
+  //hacer traza para ver bumper
 }
 
 void
@@ -45,32 +47,31 @@ BumpGo::step()
   switch (state_)
   {
     case GOING_FORWARD:
-      // cmd.linear.x = ...;
-      // cmd.angular.z = ...;
+      cmd.linear.x = FORWARD_VEL;
+      cmd.angular.z = 0;
 
-      if (pressed_)ç
+      if (detected_)
       {
-        press_ts_ = ros::Time::now();
+        detected_ts_ = ros::Time::now();
         state_ = GOING_BACK;
         ROS_INFO("GOING_FORWARD -> GOING_BACK");
       }
-
       break;
     case GOING_BACK:
-      // cmd.linear.x = ...;
-      // cmd.angular.z = ...;
+      cmd.linear.x = BACK_VEL;
+      cmd.angular.z = 0;
 
-      if ((ros::Time::now() - press_ts_).toSec() > BACKING_TIME )
+      if ((ros::Time::now() - detected_ts_).toSec() > BACKING_TIME )
       {
         turn_ts_ = ros::Time::now();
-        state_ = TURNING;
-        ROS_INFO("GOING_BACK -> TURNING");
+        state_ = TURNING_LEFT;
+        ROS_INFO("GOING_BACK -> TURNING_LEFT");
       }
 
       break;
-    case TURNING:
-      // cmd.linear.x = ...;
-      // cmd.angular.z = ...;
+    case TURNING_LEFT:
+      cmd.linear.x = 0;
+      cmd.angular.z = TURNING_VEL_LEFT;
 
       if ((ros::Time::now()-turn_ts_).toSec() > TURNING_TIME )
       {
@@ -78,9 +79,8 @@ BumpGo::step()
         ROS_INFO("TURNING -> GOING_FORWARD");
       }
       break;
-    }
-
-    // pub_vel_.publish(...);
+  }
+    pub_vel_.publish(cmd);
 }
 
 }  // namespace fsm_bump_go
